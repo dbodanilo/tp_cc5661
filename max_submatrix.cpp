@@ -4,29 +4,31 @@
 #include <cassert>
 #include <cmath>
 
-typedef std::vector<int> V;
-typedef std::vector<std::vector<int>> M;
+template<class a>
+using V = std::vector<a>;
 
-typedef std::pair<size_t, size_t> P;
-typedef std::pair<std::pair<size_t, size_t>, std::pair<size_t, size_t>> PP;
+template<class a>
+using M = std::vector<std::vector<a>>;
 
-void fill(M& m, size_t y, size_t x, int val) {
-    m = M(y);
+template<class a>
+void fill(M<a>& m, size_t y, size_t x, a val) {
+    m = M<a>(y);
     std::for_each(m.begin(), m.end(), 
-        [&](V& v) -> void {
+        [&](V<a>& v) -> void {
             v.resize(x, val);
         }
     );
 }
 
-void print(std::string name, M m) {
+template<class a>
+void print(std::string name, M<a> m) {
     std::cout << name << ": " << std::endl;
 
     std::for_each(m.begin(), m.end(), 
-        [](V v) -> void {
+        [](V<a> v) -> void {
             std::for_each(v.begin(), v.end(), 
-                [](size_t s_i) -> void {
-                    std::cout << s_i << " ";
+                [](a x) -> void {
+                    std::cout << x << " ";
                 }
             );
             std::cout << std::endl;
@@ -34,7 +36,7 @@ void print(std::string name, M m) {
     );
 } 
 
-size_t max_submatrix(M m) {
+size_t max_submatrix(M<int> m) {
     size_t y = m.size();
     assert(y > 0);
 
@@ -43,8 +45,8 @@ size_t max_submatrix(M m) {
 
     print("M", m);
 
-    M s;
-    fill(s, y + 1, x + 1, 0);
+    M<size_t> s;
+    fill<size_t>(s, y + 1, x + 1, 0);
 
     size_t i, j, max_s_ij = 0;
     // i < y and j < x required due to unsigned overflow
@@ -73,9 +75,9 @@ void main() {
     size_t x;
     std::cin >> y >> x;
 
-    M m = M(y);
+    auto m = M<int>(y);
     for(size_t i = 0; i < y; ++i) {
-        V& v = m[i] = V(x);
+        auto& v = m[i] = V<int>(x);
         for(size_t j = 0; j < x; ++j) {
             std::cin >> v[j];
         }
