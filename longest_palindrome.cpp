@@ -59,7 +59,7 @@ size_t longest_palindrome(S s) {
     size_t n = s.size();
     assert(n > 0);
 
-    print("S", s);
+    // print("S", s);
 
     M<size_t> m;
     fill<size_t>(m, n, n, 0);
@@ -72,11 +72,11 @@ size_t longest_palindrome(S s) {
         }
     }
 
-    for(size_t i = n/2; i < n; --i) {
-        for(size_t j = n/2; j < n; ++j) {
-            assert(j >= i);
+    for(size_t i = n - 1; i < n; --i) {
+        for(size_t j = i + 1; j < n; ++j) {
+            // assert(j >= i);
 
-            if(s[i] == s[j] && i != j) {
+            if(s[i] == s[j] && j > i + 1) {
                 m[i][j] = m[i + 1][j - 1] + 2;
             }
             else if(s[i] != s[j]) {
@@ -91,13 +91,18 @@ size_t longest_palindrome(S s) {
 }
 
 void main() {
-    S s;
-    std::cin >> s;
+    size_t n;
+    std::cin >> n;
 
-    size_t len = longest_palindrome(s);
+    for(int i = 0; i < n; ++i) {
+        S s;
+        std::cin >> s;
 
-    std::cout << "length of the longest palindrome in \"" << s << "\": " 
-              << len << std::endl;
+        size_t len = longest_palindrome(s);
+
+        std::cout << "length of the longest palindrome in \"" << s << "\": " 
+                  << len << std::endl;
+    }
 
     system("pause");
 }
