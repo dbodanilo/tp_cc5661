@@ -85,7 +85,7 @@ size_t longest_palindrome(S s) {
         }
     }
 
-    print("M", m);
+    // print("M", m);
 
     return m[0][n - 1];
 }
