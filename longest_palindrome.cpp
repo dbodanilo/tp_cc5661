@@ -94,7 +94,7 @@ void main() {
     size_t n;
     std::cin >> n;
 
-    for(int i = 0; i < n; ++i) {
+    for(size_t i = 0; i < n; ++i) {
         S s;
         std::cin >> s;
 
