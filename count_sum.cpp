@@ -11,6 +11,18 @@ template<class a>
 using M = std::vector<std::vector<a>>;
 
 template<class a>
+std::ostream& operator<<(std::ostream& out, V<a> v) {
+    out << "{";
+    for(size_t i = 0; i < v.size(); ++i) {
+        out << v[i];
+        if(i < v.size() - 1) out << ", ";
+    }
+    out << "}";
+
+    return out;
+}
+
+template<class a>
 void fill(M<a>& m, size_t y, size_t x, a val) {
     m = M<a>(y);
     std::for_each(m.begin(), m.end(), 
@@ -22,7 +34,7 @@ void fill(M<a>& m, size_t y, size_t x, a val) {
 
 template<class a>
 void print(std::string name, V<a> v) {
-    std::cout << name << ": " << std::endl;
+    std::cout << name << ": ";
 
     std::for_each(v.begin(), v.end(), 
         [](a x) -> void {
@@ -55,7 +67,7 @@ size_t count_sum(V<int> arr, int x) {
     size_t n = arr.size();
     assert(n > 0);
 
-    print("arr", arr);
+    // print("arr", arr);
 
     M<size_t> s;
     fill<size_t>(s, n + 1, x + 1, 0);
@@ -70,30 +82,39 @@ size_t count_sum(V<int> arr, int x) {
             // sum j attainable in [0..i]
             s[i][j] += s[i - 1][j];
 
-            int j_minus_arr_i = std::max(j - arr[i - 1], 0);
-            s[i][j] += s[i - 1][j_minus_arr_i];
+            int j_minus_arr_i = j - arr[i - 1];
+            if(j_minus_arr_i >= 0) {
+                s[i][j] += s[i - 1][j_minus_arr_i];
+            }
         }
     }
 
-    print("S", s);
+    // print("S", s);
 
     return s[n][x];
 }
 
 void main() {
-    size_t n;
-    int x;
-    std::cin >> n >> x;
+    size_t n_in;
+    std::cin >> n_in;
 
-    auto arr = V<int>(n);
-    for(size_t j = 0; j < n; ++j) {
-        std::cin >> arr[j];
+    for(size_t i = 0; i < n_in; ++i) {
+        int x;
+        std::cin >> x;
+
+        size_t n;
+        std::cin >> n;
+
+        auto arr = V<int>(n);
+        for(size_t j = 0; j < n; ++j) {
+            std::cin >> arr[j];
+        }
+
+        size_t count = count_sum(arr, x);
+
+        std::cout << "subsets of " << arr << " with sum " << x << ": " 
+                  << count << std::endl;
     }
-
-    size_t count = count_sum(arr, x);
-
-    std::cout << "subsets with sum " << x << ": " 
-              << count << std::endl;
 
     system("pause");
 }
