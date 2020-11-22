@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>6 Maior subsequência para um palíndromo</title>
+</head>
+
+<body>
+    <h2>6 Maior subsequência para um palíndromo</h2>
+
+    <section id="problema">
+    <h3>Explicação do problema</h3>
+
+    <p>Um palíndromo é uma sequência de caracteres que, quando escrita ao contrário resulta na mesma sequência. Um exemplo de palíndromo é a palavra “radar”. Note que, ao ler a palavra de trás para frente, temos a mesma palavra. O objetivo do problema da maior subsequência para um palíndromo é encontrar uma subsequência de letras a partir de uma string S de entrada de tal forma que forme o maior palíndromo possível. Note que uma subsequência é um sequência derivada de outra através da remoção ou não de alguns elementos, sem alterar a ordem em que aparecem na sequência original. A saída do seu programa deverá ser o tamanho da maior subsequência.</p>
+     
+    <dl>
+        <dt>Exemplo: S = (abdbca)</dt>
+        <dd>
+            A saída deverá ser 5, uma vez que a maior subsequência que forma um palíndromo é (abdba).
+        </dd>
+    </dl>
+</section>
+
+    <section id="solucao">
+        
+    <h3>Explicação da solução</h3>
+    <h4>estratégia de divisão e conquista</h4>
+    <p>
+        <table>
+            <tr>
+                <td rowspan="4">
+                    maior_seq(S, i, f) = 
+                    <!-- <span class="fs-huge">{</span> -->
+                </td>
+                <td rowspan="3">
+                    se S[i] = S[f]: 
+                    <!-- <span class="fs-huge">{</span> -->
+                </td>
+                <td>se f = i:</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>se f = i + 1:</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>se f > i + 1:</td>
+                <td>maior_seq(i + 1, f - 1) + 2</td>
+            </tr>
+            <tr>
+                <td>se S[i] &ne; S[f]:</td>
+                <td colspan="2">max(maior_seq(S, i, f - 1), maior_seq(S, i + 1, f))</td>
+            </tr>
+        </table>
+
+    </p> 
+
+    <h4>solução recursiva para o problema</h4>
+
+<pre><code>
+maior_seq(S):
+    return maior_seq'(S, 0, S.length - 1)
+
+maior_seq'(S, i, f):
+    if(S[f] = S[i]): 
+        if(f = i):
+            return 1
+        if(f = i + 1): 
+            return 2
+        else if(f > i + 1):
+            return maior_seq'(S, i + 1, f - 1)
+
+    else if (S[f] &ne; S[i]):
+        return max(maior_seq'(S, i, f - 1), maior_seq'(S, i + 1, f))
+
+</code></pre>
+
+    <h4>subestrutura ótima</h4>
+    <p>com N = S.length</p>
+    <table id="subestrutura" class="b-y b-x p-1 text-center">
+        <tr>
+            <td><sub>i</sub> \ <sup>f</sup></td>
+            <td>0</td>
+            <td>1</td>
+            <td>&hellip;</td>
+            <td>N - 1</td>
+        </tr>
+        <tr>
+            <td>0</td>
+            <td>1</td>
+            <td>?</td>
+            <td>&hellip;</td>
+            <td>maior_seq(S)</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>0</td>
+            <td>1</td>
+            <td>&hellip;</td>
+            <td>?</td>
+        </tr>
+        <tr>
+            <td>&hellip;</td>
+            <td>0</td>
+            <td>0</td>
+            <td>1</td>
+            <td>&hellip;</td>
+        </tr>
+        <tr>
+            <td>N - 1</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>1</td>
+        </tr>
+    </table>
+
+</section>
+
+<section id="implementacao">
+    <!-- <h3>Implementação</h3> -->
+
+</section>
+
+<section id="analise">
+    <h3>Análise assintótica</h3>
+    <p>maior_seq(S) = O(N<sup>2</sup>), N = S.length</p>
+
+</section>
+
+
+</body>
+
+</html>

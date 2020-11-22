@@ -1,0 +1,46 @@
+body {
+    font-size: 12pt;
+    font-family: 'Times New Roman', Times, serif;
+    width: 21cm;
+    margin: 0 auto;
+}
+
+p {
+    text-align: justify;
+    margin-top: 0.5em;
+}
+
+p, h4, h5, h6 {
+    text-indent: 1.25cm;
+}
+
+h1, h2, h3 {
+    margin-bottom: 0.5em;
+    margin-top: 1.5em;
+}
+
+.b-none {
+    border: none;
+}
+
+.fs-huge {
+    font-size: xx-large;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.b-y td {
+    border-top: solid 1pt;
+    border-bottom: solid 1pt;
+}
+
+.b-x tr td {
+    border-left: solid 1pt;
+    border-right: solid 1pt;
+}
+
+.p-1, .p-1 td {
+    padding: 0.5em 0.75em;
+}

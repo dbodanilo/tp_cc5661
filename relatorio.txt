@@ -1,0 +1,15 @@
+1 Explicação do problema
+
+
+2 Explicação da solução
+  2.1 estratégia de divisão e conquista
+  2.2 solução recursiva para o problema
+  2.3 subestrutura ótima
+
+
+3 Implementação
+  deverá ser entregue em um arquivo por problema
+
+
+4 Análise assintótica
+
