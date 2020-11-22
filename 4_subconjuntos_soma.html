@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>4 Contagem de subconjuntos com soma X</title>
+</head>
+
+<body>
+    <h2>4 Contagem de subconjuntos com soma X</h2>
+
+    <section id="problema">
+        <h3>Explicação do problema</h3>
+
+        <p>Dado um vetor arr de tamanho N e um inteiro X, a tarefa é encontrar a quantidade de subconjuntos de arr que
+            somam X.</p>
+
+        <dl>
+            <dt>Por exemplo, se arr = {1, 2, 3, 3} e X = 6</dt>
+            <dd>
+                a saída deverá ser 3, pois temos 3 subconjuntos que somam 6: {1, 2, 3}, {1, 2, 3} e {3, 3}.
+            </dd>
+        </dl>
+
+        <dl>
+            <dt>Por exemplo, se arr = {1, 1, 1, 1} e X = 4</dt>
+            <dd>
+                a saída deverá ser 1, pois só temos 1 subconjunto de arr para que a soma de seus elementos seja 4.
+            </dd>
+        </dl>
+    </section>
+
+    <section id="solucao">
+        <h3>Explicação da solução</h3>
+        <h4>estratégia de divisão e conquista</h4>
+        <p>Considerando um array de números naturais.</p>
+        <p>N = arr.length</p>
+        <p>e = arr[N - 1]</p>
+        <p>arr' = arr - {e}</p>
+
+        <table>
+            <tr>
+                <td rowspan="3">
+                    conta_soma(arr, X) = 
+                        
+                </td>
+                <td>se arr = {}:</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td rowspan="2">se arr &ne; {}:</td>
+                <td>se X = e:</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>se X > 0:</td>
+                <td>conta_soma(arr', X) + conta_soma(arr', X - e)</td>
+            </tr>
+        </table>
+
+        <h4>solução recursiva para o problema</h4>
+
+        <pre><code>
+conta_soma(arr, X):
+    N &larr; arr.length
+    if(N = 0): 
+        return 0
+    if(N > 0):
+        e &larr; arr[N - 1]
+        arr' &larr; arr[0&nldr;N-2]
+        if(X = e):
+            return 1
+        else if(X > 0):
+            return conta_soma(arr', X) + conta_soma(arr', X - e)
+</code></pre>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+        <h4 id="titulo-subestrutura">subestrutura ótima</h4>
+        <p>com N = arr.length</p>
+        <table id="subestrutura" class="b-y b-x p-1 text-center">
+            <tr>
+                <td><sub>i</sub> \ <sup>j</sup></td>
+                <td>0</td>
+                <td>1</td>
+                <td>&hellip;</td>
+                <td>X</td>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>&hellip;</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>conta_soma(arr[0&nldr;0], 0)</td>
+                <td>conta_soma(arr[0&nldr;0], 1)</td>
+                <td>&hellip;</td>
+                <td>conta_soma(arr[0&nldr;0], X)</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>conta_soma(arr[0&nldr;1], 0)</td>
+                <td>conta_soma(arr[0&nldr;1], 1)</td>
+                <td>&hellip;</td>
+                <td>conta_soma(arr[0&nldr;1], X)</td>
+            </tr>
+            <tr>
+                <td>&hellip;</td>
+                <td>&hellip;</td>
+                <td>&hellip;</td>
+                <td></td>
+                <td>&hellip;</td>
+            </tr>
+            <tr>
+                <td>N</td>
+                <td>conta_soma(arr, 0)</td>
+                <td>conta_soma(arr, 1)</td>
+                <td>&hellip;</td>
+                <td>conta_soma(arr, X)</td>
+            </tr>
+        </table>
+
+    </section>
+
+    <section id="implementacao">
+        <!-- <h3>Implementação</h3> -->
+
+    </section>
+
+    <section id="analise">
+        <h3>Análise assintótica</h3>
+        <p>conta_soma(arr, X) = O(NX), N = arr.length</p>
+
+    </section>
+
+
+</body>
+
+</html>
