@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>1 Maior sub-matriz quadrada de 1's em uma matriz binária</title>
+</head>
+
+<body>
+    <h2>1 Maior sub-matriz quadrada de 1's em uma matriz binária</h2>
+
+    <section id="problema">
+        <h3>Explicação do problema</h3>
+
+        <p>Considere uma matriz abaixo:</p>
+
+        <table class="p-1 b-left b-right">
+            <tr>
+                <td class="b-none" rowspan="9">M = </td>
+                <td class="b-left">0</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>1</td>
+                <td>0</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>0</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>0</td>
+                <td>0</td>
+                <td>1</td>
+            </tr>
+        </table>
+
+        <p>Deve-se encontrar o tamanho da maior sub-matriz quadrada de 1’s. Nesse caso, a resposta deverá ser 3 (M[5, 1]
+            até M[7, 3]). Caso a célula M[8, 3] fosse 1, o resultado seria 4 (M[5, 1] até M[8, 4]).</p>
+    </section>
+
+    <section id="solucao">
+        <h3>Explicação da solução</h3>
+        <!-- <h4>estratégia de divisão e conquista</h4>
+        <p>Considerando um array de números naturais.</p>
+        <p>N = arr.length</p>
+        <p>e = arr[N - 1]</p>
+        <p>arr' = arr - {e}</p>
+
+        <table>
+            <tr>
+                <td rowspan="3">
+                    conta_soma(arr, X) =
+
+                </td>
+                <td>se arr = {}:</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td rowspan="2">se arr &ne; {}:</td>
+                <td>se X = e:</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>se X > 0:</td>
+                <td>conta_soma(arr', X) + conta_soma(arr', X - e)</td>
+            </tr>
+        </table>
+
+        <h4>solução recursiva para o problema</h4>
+
+<pre><code>
+maior_submatriz(M):
+    k &larr; M[0].length)
+
+    acc &larr; array(M.length)
+    for (v, i) in M:
+        acc[i] = sum(v)
+    
+    for (x, i) in v:
+        while
+
+    
+</code></pre> -->
+
+        <h4 id="titulo-subestrutura">subestrutura ótima</h4>
+        <p>com Y = M.length, X = M[i].length; 0 &le; i &lt; Y</p>
+        <p>maior_em(i, j): maior dimensão de matriz quadrada de 1's com canto superior esquerdo em (i, j)</p>
+        <table id="subestrutura" class="b-y b-x p-1 text-center">
+            <tr>
+                <td><sub>i</sub> \ <sup>j</sup></td>
+                <td>0</td>
+                <td>1</td>
+                <td>&hellip;</td>
+                <td>X - 1</td>
+                <td>X</td>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>maior_em(0, 0)</td>
+                <td>maior_em(0, 1)</td>
+                <td>&hellip;</td>
+                <td>M[0, X - 1]</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>maior_em(1, 0)</td>
+                <td>maior_em(1, 1)</td>
+                <td>&hellip;</td>
+                <td>M[1, X - 1]</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>&hellip;</td>
+                <td>&hellip;</td>
+                <td>&hellip;</td>
+                <td></td>
+                <td>&hellip;</td>
+                <td>&hellip;</td>
+            </tr>
+            <tr>
+                <td>Y - 1</td>
+                <td>M[Y - 1, 0]</td>
+                <td>M[Y - 1, 1]</td>
+                <td>&hellip;</td>
+                <td>M[Y - 1, X - 1]</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>Y</td>
+                <td>0</td>
+                <td>0</td>
+                <td>&hellip;</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+        </table>
+
+    </section>
+
+    <section id="implementacao">
+        <!-- <h3>Implementação</h3> -->
+
+    </section>
+
+    <section id="analise">
+        <h3>Análise assintótica</h3>
+        <p>maior_submatriz(M) = O(YX), Y = M.length, X = M[i].length; 0 &le; i &lt; Y </p>
+
+    </section>
+
+</body>
+
+</html>

@@ -23,6 +23,14 @@ h1, h2, h3 {
     border: none;
 }
 
+td.b-left, .b-left tr td:first-child:not(.b-none) {
+    border-left: 1pt solid black;
+}
+
+.b-right tr td:last-child:not(.b-none) {
+    border-right: 1pt solid black;
+}
+
 .fs-huge {
     font-size: xx-large;
 }
@@ -42,5 +50,5 @@ h1, h2, h3 {
 }
 
 .p-1, .p-1 td {
-    padding: 0.5em 0.75em;
+    padding: 0.25em 0.75em;
 }
