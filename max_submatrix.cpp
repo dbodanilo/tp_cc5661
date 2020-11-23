@@ -65,27 +65,32 @@ size_t max_submatrix(M<int> m) {
         }
     }
 
-    print("S", s);
+    // print("S", s);
 
     return max_s_ij;
 }
 
 void main() {
-    size_t y; 
-    size_t x;
-    std::cin >> y >> x;
+    size_t n;
+    std::cin >> n;
 
-    auto m = M<int>(y);
-    for(size_t i = 0; i < y; ++i) {
-        auto& v = m[i] = V<int>(x);
-        for(size_t j = 0; j < x; ++j) {
-            std::cin >> v[j];
+    for(size_t i = 0; i < n; ++i) {
+        size_t y; 
+        size_t x;
+        std::cin >> y >> x;
+
+        auto m = M<int>(y);
+        for(size_t i = 0; i < y; ++i) {
+            auto& v = m[i] = V<int>(x);
+            for(size_t j = 0; j < x; ++j) {
+                std::cin >> v[j];
+            }
         }
+
+        size_t size_max = max_submatrix(m);
+
+        std::cout << "max submatrix size: " << size_max << std::endl;
     }
-
-    size_t size_max = max_submatrix(m);
-
-    std::cout << "max submatrix size: " << size_max << std::endl;
 
     system("pause");
 }
